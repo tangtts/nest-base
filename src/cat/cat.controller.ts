@@ -29,7 +29,8 @@ export class CatController {
 
   @Get("Page")
   findAll(
-    @User('page',ParseIntPipe)  @Query('limit', new DefaultValuePipe(10)) page: number,
+    @Query('page', new DefaultValuePipe(10)) page: number,
+    @User('limit',ParseIntPipe)  
     @Query('limit', new DefaultValuePipe(10)) limit: number,
   ) {
 

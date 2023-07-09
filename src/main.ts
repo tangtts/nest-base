@@ -6,13 +6,15 @@ import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useGlobalFilters(new AllExceptionsFilter ())
+
+  // app.useGlobalFilters(new AllExceptionsFilter ())
   app.useGlobalPipes(
     new ValidationPipe({
-      whitelist: true,
+      // 过滤非 dto 属性
+      // whitelist: true,
       // 可以做类型转化
-      transform: true,
-      validateCustomDecorators:true
+      // transform: true,
+      // validateCustomDecorators:true
       // forbidNonWhitelisted: true,
     }),
   );

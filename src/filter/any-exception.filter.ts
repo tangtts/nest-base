@@ -5,11 +5,11 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
+import { ValidationError } from 'class-validator';
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
-  catch(exception: unknown, host: ArgumentsHost) {
-    console.log("abcdefgfaf",exception)
+  catch(exception: any, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();
     const request = ctx.getRequest();
@@ -18,10 +18,6 @@ export class AllExceptionsFilter implements ExceptionFilter {
     exception instanceof HttpException
     ? exception.getStatus()
     : HttpStatus.INTERNAL_SERVER_ERROR;
-
-    console.log("🚀 ~ file: any-exception.filter.ts:17 ~ AllExceptionsFilter ~ status:", status);
-
-        
 
     response.status(status).json({
       statusCode: status,
